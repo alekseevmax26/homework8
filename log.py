@@ -53,10 +53,16 @@ def process_who_eat_cpu_and_memory(lines):
     for line in lines:
         if float(line[3]) > highest_memory:
             highest_memory = float(line[3])
-            highest_memory_name = line[10][:23]
+            highest_memory_name = line[10][:20]
         elif float(line[2]) > highest_cpu_load:
             highest_cpu_load = float(line[2])
-            highest_cpu_load_name = line[10][:23]
+            highest_cpu_load_name = line[10][:20]
+        elif float(line[3]) == highest_memory:
+            highest_memory = float(line[3])
+            highest_memory_name = ""
+        elif float(line[2]) == highest_cpu_load:
+            highest_cpu_load = float(line[2])
+            highest_cpu_load_name = ""
 
     return highest_memory_name, highest_cpu_load_name
 
