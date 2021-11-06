@@ -4,7 +4,8 @@ from collections import defaultdict
 
 
 def get_process_data():
-    process = subprocess.Popen(['ps', 'aux'], stdout=subprocess.PIPE, universal_newlines=True).stdout.readlines()
+    with open("/home/max/Downloads/zero-133064-df2fd8") as f:
+        process = f.readlines()
     nfields = len(process[0].split()) - 1
     retval = []
     for row in process[1:]:
@@ -54,7 +55,7 @@ def process_who_eat_memory(lines):
             highest_memory_name = line[10][:20]
         elif float(line[3]) == highest_memory:
             highest_memory = float(line[3])
-            highest_memory_name = ""
+            highest_memory_name = line[10][:20].rstrip()
 
     return highest_memory_name
 
@@ -68,7 +69,7 @@ def process_who_eat_cpu(lines):
             highest_cpu_load_name = line[10][:20]
         elif float(line[2]) == highest_cpu_load:
             highest_cpu_load = float(line[2])
-            highest_cpu_load_name = ""
+            highest_cpu_load_name = line[10][:20].rstrip()
 
     return highest_cpu_load_name
 
