@@ -4,8 +4,7 @@ from collections import defaultdict
 
 
 def get_process_data():
-    with open("/home/max/Downloads/zero-133064-df2fd8") as f:
-        process = f.readlines()
+    process = subprocess.Popen(['ps', 'aux'], stdout=subprocess.PIPE, universal_newlines=True).stdout.readlines()
     nfields = len(process[0].split()) - 1
     retval = []
     for row in process[1:]:
